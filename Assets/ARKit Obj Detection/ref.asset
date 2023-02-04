@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f3b71a771f04aef8057fae3964fd78, type: 3}
+  m_Name: ref
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4963488087374523657
+  m_GuidHigh: 6606570149087699135
+  m_ReferenceObjects:
+  - m_GuidLow: 5628123581375127882
+    m_GuidHigh: 10895285490392586403
+    m_Name: soap bottle
+    m_Entries:
+    - {fileID: -6831329414088302235, guid: 3be86dabd82c149b189eb6659b974237, type: 3}
