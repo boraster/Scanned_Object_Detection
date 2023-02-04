@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using Vector3 = UnityEngine.Vector3;
 
 
 public class ObjectDetection : MonoBehaviour
@@ -16,6 +18,9 @@ public class ObjectDetection : MonoBehaviour
     private GameObject detectedObj;
     private bool isObjDetected;
     private GameObject sceneInstance;
+    //private ARAnchor anchor;
+   // public ARAnchorManager anchorManager;
+    public float distanceCheck = 1.0f;
 
     private void Awake()
     {
@@ -63,18 +68,35 @@ public class ObjectDetection : MonoBehaviour
             {
                 detectedObj = args.added[i].gameObject;
                 isObjDetected = true;
+                
                 CreateObjectWithReferencePose(detectedObj);
+                //anchor.transform.position = detectedObj.transform.position;
+                //anchor.transform.rotation = detectedObj.transform.rotation;
             }
 
         }
 
+        for (int i = 0; i < args.updated.Count; i++)
+        {
+            if (args.updated[i].referenceObject.name == manager.referenceLibrary[0].name)
+            {
+                detectedObj = args.updated[i].gameObject;
+                isObjDetected = true;
+               // CreateObjectWithReferencePose(detectedObj);
+            }
+        }
+
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         if (ObjectInsideFrustum(sceneInstance))
         {
             textObj.text = manager.referenceLibrary[0].name;
+            if (Vector3.Distance(detectedObj.transform.position, sceneInstance.transform.position) > distanceCheck)
+            {
+                sceneInstance.transform.position = detectedObj.transform.position;
+            }
         }
         else
         {
